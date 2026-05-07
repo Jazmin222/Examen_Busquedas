@@ -4,8 +4,7 @@
 <head>
 
     <meta charset="UTF-8">
-
-    <title>Busquedas</title>
+    <title>Sistema de Búsquedas</title>
 
     <style>
 
@@ -13,16 +12,17 @@
             margin:0;
             padding:0;
             box-sizing:border-box;
+            font-family:Arial, Helvetica, sans-serif;
         }
 
         body{
 
-            font-family: Arial, Helvetica, sans-serif;
-
-            background: linear-gradient(
-                135deg,
-                #1e3c72,
-                #2a5298
+            background:
+            linear-gradient(
+                120deg,
+                #0f2027,
+                #203a43,
+                #2c5364
             );
 
             min-height:100vh;
@@ -30,63 +30,87 @@
             display:flex;
             justify-content:center;
             align-items:center;
+
+            padding:30px;
         }
 
-        .contenedor{
+        .panel{
 
-            width:700px;
+            width:800px;
 
             background:white;
 
+            border-radius:25px;
+
+            overflow:hidden;
+
+            box-shadow:0px 15px 40px rgba(0,0,0,0.4);
+        }
+
+        .header{
+
+            background:
+            linear-gradient(
+                135deg,
+                #141e30,
+                #243b55
+            );
+
+            color:white;
+
             padding:40px;
 
-            border-radius:20px;
-
-            box-shadow:0px 10px 30px rgba(0,0,0,0.3);
+            text-align:center;
         }
 
-        h1{
+        .header h1{
 
-            text-align:center;
+            font-size:40px;
 
-            color:#1e3c72;
-
-            margin-bottom:30px;
-
-            font-size:35px;
+            margin-bottom:10px;
         }
 
-        .subtitulo{
+        .header p{
 
-            text-align:center;
+            font-size:18px;
 
-            color:gray;
+            opacity:0.9;
+        }
 
-            margin-bottom:30px;
+        .contenido{
+
+            padding:40px;
+        }
+
+        .grupo{
+
+            margin-bottom:25px;
         }
 
         label{
 
+            display:block;
+
+            margin-bottom:10px;
+
             font-weight:bold;
 
-            color:#333;
+            color:#243b55;
 
-            margin-top:15px;
-
-            display:block;
+            font-size:18px;
         }
 
         input{
 
             width:100%;
 
-            padding:14px;
+            padding:16px;
 
-            margin-top:10px;
+            border:none;
 
-            border-radius:10px;
+            border-radius:15px;
 
-            border:2px solid #dcdcdc;
+            background:#f1f5f9;
 
             font-size:16px;
 
@@ -95,29 +119,28 @@
 
         input:focus{
 
-            border-color:#2a5298;
-
             outline:none;
 
-            box-shadow:0px 0px 10px rgba(42,82,152,0.3);
+            background:white;
+
+            box-shadow:0px 0px 10px rgba(36,59,85,0.4);
         }
 
         button{
 
             width:100%;
 
-            padding:15px;
-
-            margin-top:30px;
+            padding:18px;
 
             border:none;
 
-            border-radius:12px;
+            border-radius:15px;
 
-            background:linear-gradient(
+            background:
+            linear-gradient(
                 135deg,
-                #1e3c72,
-                #2a5298
+                #141e30,
+                #243b55
             );
 
             color:white;
@@ -131,73 +154,93 @@
 
         button:hover{
 
-            transform:scale(1.03);
+            transform:translateY(-3px);
 
-            background:linear-gradient(
-                135deg,
-                #2a5298,
-                #1e3c72
-            );
+            box-shadow:0px 8px 20px rgba(0,0,0,0.3);
         }
 
         .resultado{
 
-            margin-top:35px;
-
-            padding:25px;
-
-            border-radius:15px;
-
-            background:#f4f7ff;
-
-            border-left:8px solid #2a5298;
+            margin-top:40px;
         }
 
         .resultado h2{
 
-            color:#1e3c72;
+            color:#243b55;
 
             margin-bottom:20px;
+
+            text-align:center;
+        }
+
+        .cards{
+
+            display:grid;
+
+            grid-template-columns:1fr 1fr 1fr;
+
+            gap:20px;
         }
 
         .card{
 
-            background:white;
+            background:#f8fafc;
 
-            padding:15px;
+            padding:20px;
 
-            margin-top:15px;
+            border-radius:20px;
 
-            border-radius:12px;
+            border-top:6px solid #243b55;
 
-            box-shadow:0px 4px 10px rgba(0,0,0,0.1);
+            transition:0.3s;
+        }
+
+        .card:hover{
+
+            transform:scale(1.03);
         }
 
         .card h3{
 
-            color:#2a5298;
+            text-align:center;
 
-            margin-bottom:10px;
+            margin-bottom:15px;
+
+            color:#141e30;
         }
 
         .card p{
 
+            text-align:center;
+
             color:#333;
 
-            font-size:16px;
-
-            line-height:1.5;
+            line-height:1.6;
         }
 
         .footer{
 
             text-align:center;
 
-            margin-top:25px;
+            margin-top:35px;
 
             color:gray;
 
             font-size:14px;
+        }
+
+        @media(max-width:700px){
+
+            .cards{
+
+                grid-template-columns:1fr;
+            }
+
+            .panel{
+
+                width:100%;
+            }
+
         }
 
     </style>
@@ -206,104 +249,114 @@
 
 <body>
 
-<div class="contenedor">
+<div class="panel">
 
-    <h1>
-        Examen Tipos de Busquedas
-    </h1>
+    <div class="header">
 
-    <p class="subtitulo">
+        <h1>
+            Tipos de busqueda
+        </h1>
 
-        Comparación de algoritmos:
-        BFS, DFS y UCS
-
-    </p>
-
-    <form method="POST">
-
-        <label>
-
-            Ciudad Inicial
-
-        </label>
-
-        <input
-        type="text"
-        name="inicio"
-        placeholder=""
-        required>
-
-        <label>
-
-            Ciudad Destino
-
-        </label>
-
-        <input
-        type="text"
-        name="destino"
-        placeholder=""
-        required>
-
-        <button type="submit">
-
-            Ejecutar Búsquedas
-
-        </button>
-
-    </form>
-
-    {% if resultados %}
-
-    <div class="resultado">
-
-        <h2>
-            Resultados Encontrados
-        </h2>
-
-        <div class="card">
-
-            <h3>
-                BFS
-            </h3>
-
-            <p>
-                {{ resultados["bfs"] }}
-            </p>
-
-        </div>
-
-        <div class="card">
-
-            <h3>
-                DFS
-            </h3>
-
-            <p>
-                {{ resultados["dfs"] }}
-            </p>
-
-        </div>
-
-        <div class="card">
-
-            <h3>
-                UCS
-            </h3>
-
-            <p>
-                {{ resultados["ucs"] }}
-            </p>
-
-        </div>
+        <p>
+        </p>
 
     </div>
 
-    {% endif %}
+    <div class="contenido">
 
-    <div class="footer">
+        <form action="/buscar" method="POST">
 
-        
+            <div class="grupo">
+
+                <label>
+                    Ciudad Inicial
+                </label>
+
+                <input
+                type="text"
+                name="inicio"
+                placeholder="Escribe ciudad inicial"
+                required>
+
+            </div>
+
+            <div class="grupo">
+
+                <label>
+                    Ciudad Destino
+                </label>
+
+                <input
+                type="text"
+                name="destino"
+                placeholder="Escribe ciudad destino"
+                required>
+
+            </div>
+
+            <button type="submit">
+
+                Buscar Ruta
+
+            </button>
+
+        </form>
+
+        {% if resultados %}
+
+        <div class="resultado">
+
+            <h2>
+                Resultados
+            </h2>
+
+            <div class="cards">
+
+                <div class="card">
+
+                    <h3>
+                        BFS
+                    </h3>
+
+                    <p>
+                        {{ resultados["bfs"] }}
+                    </p>
+
+                </div>
+
+                <div class="card">
+
+                    <h3>
+                        DFS
+                    </h3>
+
+                    <p>
+                        {{ resultados["dfs"] }}
+                    </p>
+
+                </div>
+
+                <div class="card">
+
+                    <h3>
+                        UCS
+                    </h3>
+
+                    <p>
+                        {{ resultados["ucs"] }}
+                    </p>
+
+                </div>
+
+            </div>
+
+        </div>
+
+        {% endif %}
+
+        <div class="footer">
+
+        </div>
 
     </div>
 
